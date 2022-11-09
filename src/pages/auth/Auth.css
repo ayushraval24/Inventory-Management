@@ -1,0 +1,45 @@
+.login_container{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(212, 211, 211);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_form{
+    background-color: white;
+    padding: 20px;
+    min-width: 300px;
+}
+
+.form_buttons{
+    width: 100%;
+    border-radius: 0px !important;
+    background-color: rgb(105, 160, 255) !important;
+    border: 0px !important;
+    outline: 0px !important;
+}
+
+.form-error{
+    font-size: 13px;
+    color: rgb(249, 70, 70);
+}
+
+.white_bg-card{
+    background-color: white;
+    border: 2px solid rgb(225, 225, 225);
+    box-shadow: 5px 5px 6px rgb(138, 138, 138);
+}
+
+.custom_button{
+    background-color: #ff9123 !important;
+    border-radius:  0px !important;
+    color: white !important;
+    font-weight: 500 !important;
+}
+
+.custom_lable{
+    color: #ff8306 !important;
+    font-weight : 500 !important;
+}
