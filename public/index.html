@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link
+    rel="stylesheet"
+    href="./index.css"></link>
+   
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js" ></script> -->
+    <script>
+    // $(document).ready(function(){
+    
+    // var FLIP = 2;
+    // var NORMAL = 1;
+    // var orientation = NORMAL;
+    // var $uploadCrop, tempFilename, rawImg, imageId;
+    // var fileTypes = ['jpg', 'jpeg', 'png'];
+    // function readFile(input) {
+    //     if (input.files && input.files[0]) {
+    //         var reader = new FileReader();
+    //         var file = input.files[0]; // Get your file here
+    //         var fileExt = file.type.split('/')[1]; // Get the file extension
+    //         if (fileTypes.indexOf(fileExt) !== -1) {
+    //             reader.onload = function (e) {
+    //                 $('.upload-demo').addClass('ready');
+    //                 $('#cropImagePop').modal('show');
+    //                 rawImg = e.target.result;
+    //             }
+    //             reader.readAsDataURL(input.files[0]);
+
+    //         }else{
+    //             swal("Only JPEG, PNG, JPG file types are supported");
+    //         }
+    //     }
+    //     else {
+    //         swal("Sorry - something went wrong");
+    //     }
+    // }
+
+    // $uploadCrop = $('#upload-demo').croppie({
+    //     viewport: {
+    //         width: 480,
+    //         height: 270,
+    //     // type: 'square'
+    //     },
+    //     enableOrientation: true,
+    //     enforceBoundary: false,
+    //     enableExif: true,
+    //     enableResize:true,
+    // });
+    // $('#cropImagePop').on('shown.bs.modal', function(){
+    //     // alert('Shown pop');
+    //     $uploadCrop.croppie('bind', {
+    //         url: rawImg
+    //         }).then(function(){
+    //             // console.log('jQuery bind complete');
+    //         });
+    // });
+    // $('#Flip').click(function() {
+    //         orientation = orientation == NORMAL ? FLIP : NORMAL;
+    //         $uploadCrop.croppie('bind', {
+    //         url: rawImg,
+    //         orientation: orientation,
+    //     });
+    // });
+    // $('#rotate').click(function() {
+    //     $uploadCrop.croppie('rotate', parseInt($(this).data('deg')));
+    // });
+    // $('.item-img').on('change', function () { imageId = $(this).data('id'); tempFilename = $(this).val();
+    // $('#cancelCropBtn').data('id', imageId); readFile(this); });
+    // $('#cropImageBtn').on('click', function (ev) {
+    //         $uploadCrop.croppie('result', {
+    //         type: 'base64',
+    //         format: 'jpeg',
+    //         size: {width: 1280, height: 720}
+    //     }).then(function (resp) {
+    //         $('#item-img-output').attr('src', resp);
+    //         $('#main_image').attr('value', resp);
+    //         $('#cropImagePop').modal('hide');
+    //     });
+    // });
+    //   })
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

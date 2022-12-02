@@ -1,0 +1,111 @@
+.main_container{
+    background-color: rgb(238, 236, 236) !important;
+    height: 100vh !important;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    overflow-y: scroll !important;
+}
+
+.inventory_cards{
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats_cart{
+    /* width: 280px; */
+    height: 80px;
+    padding: 5px;
+    background-color: white;
+}
+
+.stats_icon{
+    height: 40px !important;
+}
+
+.stats_card_heading{
+    font-size: 18px
+}
+
+.stats_card_details{
+    font-size: 18px
+}
+
+.card_red{
+    border-bottom:4px solid #f94040  ;
+}
+.card_green{
+    border-bottom:4px solid #03cf03  ;
+}
+.card_blue{
+    border-bottom:4px solid #5992f5  ;
+}
+.card_yellow{
+    border-bottom:4px solid #ff994f ;
+}
+
+.icon_red{
+    color: #f94040  !important;
+}
+.icon_green{
+    color: #03cf03  !important;
+}
+.icon_yellow{
+    color: #ff994f !important;
+}
+.icon_blue{
+    color: #5992f5  !important;
+}
+
+.differ{
+    height:2px;
+    border-width:0;
+    background-color:rgb(161, 161, 161);
+    margin-top:12px;
+    margin-bottom: 12px;
+}
+
+.action_view{
+    font-size: 15px;
+    color: blue;
+}
+
+.action_edit{
+    font-size: 15px;
+    color: green;
+}
+
+.action_delete{
+    font-size: 15px;
+    color: red;
+
+}
+
+.custom_weight{
+    font-weight: 600;
+}
+
+.custom_card{
+    background-color: white;
+    box-shadow: 5px 5px 7px rgb(186, 186, 186);
+}
+
+.custom_hr{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.custom_line_height{
+    line-height: 40px;
+}
+
+.pointer_hover:hover{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px){
+    .inventory_cards{
+        justify-content: center;
+
+    }
+}
