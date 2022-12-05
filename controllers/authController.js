@@ -184,7 +184,7 @@ exports.forgotPassword = async (req, res, next) => {
 
     const forgotPasswordToken = user.generateForgotPasswordToken();
 
-    const url = `${process.env.BASE_URL}/change-password/${forgotPasswordToken}`;
+    const url = `${process.env.BASE_URL}/changePassword/${forgotPasswordToken}`;
 
     transporter.sendMail(
       {
