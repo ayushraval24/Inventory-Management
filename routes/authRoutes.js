@@ -46,13 +46,13 @@ router.post("/signup", validator.signupValidation, authController.signup);
 router.post("/signin", validator.signinValidation, authController.signin);
 
 router.post(
-  "/forgotPassword",
+  "/forgot-password",
   validator.forgotPasswordValidation,
   authController.forgotPassword
 );
 
 router.post(
-  "/changePassword/:token",
+  "/change-password/:token",
   validator.changePasswordValidation,
   authController.changePassword
 );
