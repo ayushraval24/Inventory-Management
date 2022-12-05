@@ -19,7 +19,11 @@ app.use(
   })
 );
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(require("morgan")("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
