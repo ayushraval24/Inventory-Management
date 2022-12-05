@@ -14,10 +14,10 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   const validate = Yup.object({
-    password: Yup.string().required("Password is required"),
-    confirmPassword: Yup.string()
-      .required("Confirm password required")
-      .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    // password: Yup.string().required("Password is required"),
+    // confirmPassword: Yup.string()
+    //   .required("Confirm password required")
+    //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
 
   const submitHandler = (values) => {
@@ -27,7 +27,7 @@ export default function ResetPassword() {
         navigate("/login");
       })
       .catch((err) => {
-        toast.error(err.response.data.errors.message);
+        toast.error(err.response.data.message);
       });
   };
 

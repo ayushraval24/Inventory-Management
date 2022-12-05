@@ -27,7 +27,7 @@ export default function Register() {
         toast.success(res.data.message);
       })
       .catch((err) => {
-        toast.error(err.response.data.errors.message);
+        toast.error(err.response.data.message);
       });
   };
 
