@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getApi } from "../../redux/actions/apis";
 import { useParams, useNavigate } from "react-router-dom";
-import { BallTriangle } from "react-loader-spinner";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
 import axios from "axios";
 import { toast } from "react-toastify";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -31,17 +31,13 @@ export default function VerifyUser() {
   }, []);
 
   return (
-    <div>
-      <h1>Inventory management</h1>
+    <div className="mt-5">
       {isLoading ? (
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          wrapperClass={{}}
-          wrapperStyle=""
+        <RotatingLines
+          strokeColor="orange"
+          strokeWidth="4"
+          animationDuration="0.75"
+          width="60"
           visible={true}
         />
       ) : (

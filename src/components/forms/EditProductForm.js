@@ -5,7 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { quillFormat, quillModules } from "../../modules/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../../redux/actions/getSingleProduct";
-import { BallTriangle } from "react-loader-spinner";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
 import { fetchEditProduct } from "../../redux/actions/editProductAction";
 import { fetchAllCategories } from "../../redux/actions/category/getAllCategoryAction";
 import Select from "react-select";
@@ -98,15 +98,12 @@ export default function EditProductForm({ productId }) {
   return (
     <>
       {detailsLoading ? (
-        <div className="col-6 d-flex justify-content-center">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            wrapperClass={{}}
-            wrapperStyle=""
+        <div className="col-6 my-5 d-flex justify-content-center">
+          <RotatingLines
+            strokeColor="orange"
+            strokeWidth="4"
+            animationDuration="0.75"
+            width="60"
             visible={true}
           />
         </div>

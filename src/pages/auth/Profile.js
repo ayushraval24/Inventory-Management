@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BallTriangle } from "react-loader-spinner";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
 import "../Dashboard.css";
 import { fetchUserProfile } from "../../redux/actions/auth/getProfileAction";
 import { useNavigate } from "react-router-dom";
@@ -25,15 +25,12 @@ const Profile = () => {
   return (
     <>
       {profileLoading ? (
-        <div className="col-6 d-flex justify-content-center">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            wrapperClass={{}}
-            wrapperStyle=""
+        <div className="col-6 d-flex my-5 justify-content-center">
+          <RotatingLines
+            strokeColor="orange"
+            strokeWidth="4"
+            animationDuration="0.75"
+            width="60"
             visible={true}
           />
         </div>

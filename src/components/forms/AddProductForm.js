@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddProduct } from "../../redux/actions/addProductAction";
 import { quillFormat, quillModules } from "../../modules/utils";
-import { BallTriangle } from "react-loader-spinner";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
+
 import { fetchAllCategories } from "../../redux/actions/category/getAllCategoryAction";
 import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
@@ -66,15 +67,12 @@ export default function AddProductForm() {
   return (
     <>
       {isLoading && (
-        <div className="col-6 d-flex justify-content-center">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            wrapperClass={{}}
-            wrapperStyle=""
+        <div className="col-6 my-5 d-flex justify-content-center">
+          <RotatingLines
+            strokeColor="orange"
+            strokeWidth="4"
+            animationDuration="0.75"
+            width="60"
             visible={true}
           />
         </div>

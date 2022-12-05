@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { postApi } from "../../redux/actions/apis";
 import { toast } from "react-toastify";
-import { BallTriangle } from "react-loader-spinner";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
 
 export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
@@ -73,12 +73,11 @@ export default function ForgotPassword() {
                 Reset Password
                 {loading && (
                   <div className="col-6 d-flex justify-content-center">
-                    <BallTriangle
-                      height={10}
-                      width={10}
-                      radius={5}
-                      color="#4fa94d"
-                      ariaLabel="ball-triangle-loading"
+                    <RotatingLines
+                      strokeColor="orange"
+                      strokeWidth="4"
+                      animationDuration="0.75"
+                      width="60"
                       visible={true}
                     />
                   </div>

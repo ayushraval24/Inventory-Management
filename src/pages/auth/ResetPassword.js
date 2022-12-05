@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./Auth.css";
 import { toast } from "react-toastify";
-import { BallTriangle } from "react-loader-spinner";
 import { postApi } from "../../redux/actions/apis";
 
 export default function ResetPassword() {
