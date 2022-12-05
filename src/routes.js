@@ -51,6 +51,8 @@ export default function routes() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-password/:token" element={<ResetPassword />} />
 
+          <Route path="/verify-user/:token" element={<VerifyUser />} />
+
           <Route
             path="/"
             element={
@@ -91,15 +93,6 @@ export default function routes() {
             element={
               <PrivateRoutes>
                 <EditProduct />
-              </PrivateRoutes>
-            }
-          />
-
-          <Route
-            path="/verify-user/:token"
-            element={
-              <PrivateRoutes>
-                <VerifyUser />
               </PrivateRoutes>
             }
           />
