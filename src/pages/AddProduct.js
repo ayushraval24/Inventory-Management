@@ -6,7 +6,7 @@ import "../App.css";
 export default function AddProduct() {
   return (
     <div>
-      <p className="text-start h4 mt-2 mb-1 main_header px-1">Add Product</p>
+      <p className="text-start h4 mt-3 mb-1 main_header px-1">Add Product</p>
       <AddProductForm />
     </div>
   );

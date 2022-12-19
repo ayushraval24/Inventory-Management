@@ -109,3 +109,31 @@
 
     }
 }
+
+@media  (min-width:985px) and (max-width:1246px){
+    .stats_icon{
+        padding: 3px !important;
+    }
+}
+
+@media  (min-width:995px) and (max-width:1181px){
+   
+    .stats_cart  {
+        padding: 5px !important;
+    }
+    
+    .status_details {
+        padding: 5px !important;
+    }
+
+    .stats_card_heading{
+        font-size: 18px !important;
+        margin-bottom: 3px;
+        font-weight: 400;
+    }
+    .stats_card_details {
+        font-size: 15px !important;
+        margin-bottom: 3px;
+    }
+}
+

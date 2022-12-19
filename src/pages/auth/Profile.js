@@ -25,7 +25,7 @@ const Profile = () => {
   return (
     <>
       {profileLoading ? (
-        <div className="col-6 d-flex my-5 justify-content-center">
+        <div className="col-lg-8 col-md-12 col-sm-12 d-flex my-5 justify-content-center">
           <RotatingLines
             strokeColor="orange"
             strokeWidth="4"
@@ -37,61 +37,63 @@ const Profile = () => {
       ) : (
         <div className="inventory_stats container-fluid">
           <p className="text-start h4 mt-2 mb-3 main_header">Profile</p>
-          <div className="container-fluid row">
-            <div className="col-md-8 row white_bg-card">
-              <div className="col-md-6 col-12 p-3">
-                <img
-                  // src={`${process.env.REACT_APP_PROFILE_IMAGES}/${profileData?.avatar}`}
-                  src={image}
-                  alt=""
-                  height="350px"
-                />
-              </div>
-              <div className="col-md-6 col-12 text-start p-3">
-                <hr className="custom_hr" />
-                <p className="fs-5 mb-0 custom_line_height">
-                  <span className="custom_lable">
-                    Name <AiOutlineForward />{" "}
-                  </span>
+          <div className="col-lg-8 col-md-12 col-sm-12 row white_bg-card">
+            <div className="col-sm-12 col-md-6 p-3">
+              <img
+                // src={`${process.env.REACT_APP_PROFILE_IMAGES}/${profileData?.avatar}`}
+                src={image}
+                alt=""
+                // height="350px"
+                className="edit_profile_image img-fluid"
+                style={{
+                  maxHeight: "350px",
+                }}
+              />
+            </div>
+            <div className="col-sm-12 col-md-6 col-12 text-start p-3">
+              <hr className="custom_hr" />
+              <p className="fs-5 mb-0 custom_line_height">
+                <span className="custom_lable">
+                  Name <AiOutlineForward />{" "}
+                </span>
 
-                  {profileData?.last_name === null &&
-                  profileData?.first_name === null ? (
-                    <span> N/A </span>
-                  ) : (
-                    <span>
-                      {profileData?.first_name} {profileData?.last_name}
-                    </span>
-                  )}
-                </p>
-                <hr className="custom_hr" />
-                <p className="fs-5 mb-0 custom_line_height">
-                  <span className="custom_lable">
-                    Email <AiOutlineForward />{" "}
+                {profileData?.last_name === null &&
+                profileData?.first_name === null ? (
+                  <span> N/A </span>
+                ) : (
+                  <span>
+                    {profileData?.first_name} {profileData?.last_name}
                   </span>
-                  <span>{profileData?.email} </span>
-                </p>
-                <hr className="custom_hr " />
-                <p className="fs-5 mb-0 custom_line_height">
-                  <span className=" custom_lable">
-                    Phone <AiOutlineForward />
-                  </span>
-                  <span> {profileData?.phone}</span>
-                </p>
-                <hr className="custom_hr" />
-                <p className="fs-5 mb-0 custom_line_height">
-                  <span className=" custom_lable">
-                    Bio <AiOutlineForward />{" "}
-                  </span>
-                  <span>{profileData?.bio} </span>
-                </p>
-                <hr className="custom_hr" />
-                <button
-                  className="btn custom_button my-2"
-                  onClick={() => navigate("/edit-profile")}
-                >
-                  Edit Profile
-                </button>
-              </div>
+                )}
+              </p>
+              <hr className="custom_hr" />
+              <p className="fs-5 mb-0 custom_line_height">
+                <span className="custom_lable">
+                  Email <AiOutlineForward />{" "}
+                </span>
+                <span>{profileData?.email} </span>
+              </p>
+              <hr className="custom_hr " />
+              <p className="fs-5 mb-0 custom_line_height">
+                <span className=" custom_lable">
+                  Phone <AiOutlineForward />
+                </span>
+                <span> {profileData?.phone}</span>
+              </p>
+              <hr className="custom_hr" />
+              <p className="fs-5 mb-0 custom_line_height">
+                <span className=" custom_lable">
+                  Bio <AiOutlineForward />{" "}
+                </span>
+                <span>{profileData?.bio} </span>
+              </p>
+              <hr className="custom_hr" />
+              <button
+                className="btn custom_button my-2"
+                onClick={() => navigate("/edit-profile")}
+              >
+                Edit Profile
+              </button>
             </div>
           </div>
         </div>

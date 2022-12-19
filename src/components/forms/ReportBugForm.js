@@ -46,7 +46,7 @@ export default function ReportBugForm() {
           <div className="row p-3">
             <form
               onSubmit={handleSubmit}
-              className="login_form col-12 col-md-6 custom_card px-3"
+              className="report_form col-lg-6 col-12 custom_card px-3"
             >
               <div className="mb-3 text-start">
                 <input

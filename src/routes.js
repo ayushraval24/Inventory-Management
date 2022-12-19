@@ -29,10 +29,12 @@ const PrivateRoutes = ({ children }) => {
   }
   return (
     <>
-      <div className="col-12 col-md-2 px-0 bg-dark">
+      <div className="col-12 col-md-3 col-lg-2 px-0 bg-dark">
         <Sidebar />
       </div>
-      <div className="col-12 col-md-10  main_container">{children}</div>
+      <div className="col-12 col-md-9 col-lg-10  main_container">
+        {children}
+      </div>
     </>
   );
 };

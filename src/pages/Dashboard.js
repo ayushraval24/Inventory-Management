@@ -18,6 +18,7 @@ import Swal from "sweetalert2";
 import { deleteApi } from "../redux/actions/apis";
 import { fetchInventoryStats } from "../redux/actions/getInventoryStats";
 import { fetchAllCategories } from "../redux/actions/category/getAllCategoryAction";
+import { CSVLink, CSVDownload } from "react-csv";
 
 export default function Dashboard() {
   const [totalRows, setTotalRows] = useState(0);
@@ -30,7 +31,18 @@ export default function Dashboard() {
   const allProducts = useSelector((state) => state.allProductsData.data);
   const inventoryData = useSelector((state) => state.inventoryData.data);
   const count = useSelector((state) => state.allProductsData.count);
+  const isLoading = useSelector((state) => state.allProductsData.isLoading);
   const categoryCount = useSelector((state) => state.categoriesData.count);
+
+  const headers = [
+    { label: "Id", key: "id" },
+    { label: "Product Name", key: "name" },
+    { label: "Category", key: "category" },
+    { label: "Image", key: "image" },
+    { label: "Price", key: "price" },
+    { label: "Quantity", key: "quantity" },
+    { label: "Total Value", key: "value" },
+  ];
 
   const columns = [
     {
@@ -124,6 +136,7 @@ export default function Dashboard() {
         price: product?.price,
         quantity: product?.quantity,
         value: Number(product?.price) * Number(product?.quantity),
+        image: `${process.env.REACT_APP_PROFILE_IMAGES}/${product?.image}`,
       };
     });
     return finalData;
@@ -161,9 +174,9 @@ export default function Dashboard() {
     <>
       {/* inventory stats */}
       <div className="inventory_stats">
-        <p className="text-start h4 mt-2 mb-3 main_header">Inventory Stats</p>
+        <p className="text-start h4 mt-3 mb-3 main_header">Inventory Stats</p>
         <div className="inventory_cards container-fluid row m-0">
-          <div className="col-12 col-md-3 stats_cart row card_red">
+          <div className="col-12 col-md-6 col-lg-3 stats_cart row card_red mb-3">
             <BsCart4 className="stats_icon col-3 icon_red" />
             <div className="status_details col-9">
               <p className="stats_card_heading mb-2 text-start ">
@@ -174,8 +187,8 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          <div className="col-12 col-md-3 stats_cart row card_green">
-            <AiFillDollarCircle className="stats_icon col-3 icon_green" />
+          <div className="col-12 col-md-6 col-lg-3 stats_cart row card_green mb-3">
+            <AiFillDollarCircle className="stats_icon  col-3 icon_green " />
             <div className="status_details col-9">
               <p className="stats_card_heading mb-2 text-start">
                 Total Store Value
@@ -185,7 +198,7 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          <div className="col-12 col-md-3 stats_cart row card_yellow ">
+          <div className="col-12 col-md-6 col-lg-3 stats_cart row card_yellow mb-3">
             <BsFillCartXFill className="stats_icon col-3 icon_yellow" />
             <div className="status_details col-9">
               <p className="stats_card_heading mb-2 text-start">Out of Stock</p>
@@ -194,7 +207,7 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          <div className="col-12 col-md-3 stats_cart row  card_blue">
+          <div className="col-12 col-md-6 col-lg-3 stats_cart row  card_blue mb-3">
             <BsFillGridFill className="stats_icon col-3  icon_blue" />
             <div className="status_details col-9">
               <p className="stats_card_heading mb-2 text-start">Categories</p>
@@ -209,11 +222,15 @@ export default function Dashboard() {
       {/* inventory details */}
       <div className="inventory_items">
         <div className="row my-3">
-          <div className="inventory_items col-md-3 text-start h4 main_header">
+          <div className="inventory_items col-sm-12 col-md-5 col-lg-3 text-start  main_header">
+            <CSVLink data={getProductsData()} headers={headers}>
+              Download CSV
+            </CSVLink>
+          </div>
+          <div className="col-0 col-md-2 col-lg-6 h4  main_header">
             Inventory Items
           </div>
-          <div className="col-md-6"></div>
-          <div className="inventory_search col-md-3">
+          <div className="inventory_search col-sm-12 col-md-5  col-lg-3 ">
             <input
               type="text"
               className="form-control custom-form-control"
@@ -229,13 +246,11 @@ export default function Dashboard() {
             striped={true}
             columns={columns}
             data={getProductsData()}
-            // progressPending={usersDataLoading}
+            progressPending={isLoading}
             customStyles={customStyles}
-            // expandableRowsComponent={RowComponent}
             pagination={true}
             paginationServer={true}
             onChangePage={handlePageChange}
-            // onSort={handleSort}
             paginationTotalRows={totalRows}
             onChangeRowsPerPage={handlePerRowsChange}
             paginationRowsPerPageOptions={[10, 15, 20, 25]}

@@ -72,7 +72,7 @@ export default function ForgotPassword() {
               >
                 Reset Password
                 {loading && (
-                  <div className="col-6 d-flex justify-content-center">
+                  <div className="col-6 my-5 d-flex justify-content-center">
                     <RotatingLines
                       strokeColor="orange"
                       strokeWidth="4"

@@ -68,7 +68,7 @@ const EditProfile = () => {
   return (
     <>
       {profileLoading ? (
-        <div className="col-6 my-5 d-flex justify-content-center">
+        <div className="col-lg-8 col-md-12 col-sm-12 my-5 d-flex justify-content-center">
           <RotatingLines
             strokeColor="orange"
             strokeWidth="4"
@@ -84,181 +84,179 @@ const EditProfile = () => {
               <p className="text-start h4 mt-2 mb-3 main_header">
                 Edit Profile
               </p>
-              <div className="container-fluid row">
-                <div className="col-md-8 row white_bg-card p-3">
-                  <div className="col-md-6 col-12 ">
-                    {blob !== "" ? (
-                      <img
-                        src={blob}
-                        alt=""
-                        height="350px"
-                        className="col-md-6 col-12 "
-                        style={{ width: "auto" }}
-                      />
-                    ) : (
-                      <img
-                        src={avatarData}
-                        alt=""
-                        height="350px"
-                        className="col-md-6 col-12 "
-                        style={{ width: "auto" }}
-                      />
-                    )}
-                  </div>
-                  <div className="col-md-6 col-12 text-start">
-                    <Formik
-                      onSubmit={(values) => submitHandler(values)}
-                      initialValues={getInitialValues()}
-                      // validationSchema={validate}
-                      enableReinitialize={true}
-                    >
-                      {({
-                        values,
-                        errors,
-                        touched,
-                        handleChange,
-                        handleSubmit,
-                        setFieldValue,
-                      }) => {
-                        return (
-                          <form onSubmit={handleSubmit} className="login_form ">
-                            <div className="mb-3 text-start">
-                              <label
-                                htmlFor="first_name"
-                                className="form-label custom_lable"
-                              >
-                                First Name
-                              </label>
-                              <input
-                                type="text"
-                                id="first_name"
-                                className={
-                                  errors.confirmPassword
-                                    ? "form-control custom-form-control form-error-border"
-                                    : "form-control custom-form-control"
-                                }
-                                name="first_name"
-                                value={values.first_name}
-                                onChange={handleChange}
-                              />
-                            </div>
-                            <div className="mb-3 text-start">
-                              <label
-                                htmlFor="last_name"
-                                className="form-label custom_lable"
-                              >
-                                Last Name
-                              </label>
-                              <input
-                                type="text"
-                                id="last_name"
-                                className={
-                                  errors.confirmPassword
-                                    ? "form-control custom-form-control form-error-border"
-                                    : "form-control custom-form-control"
-                                }
-                                name="last_name"
-                                value={values.last_name}
-                                onChange={handleChange}
-                              />
-                            </div>
-                            <div className="mb-3 text-start">
-                              <label
-                                htmlFor="email"
-                                className="form-label custom_lable"
-                              >
-                                Email
-                              </label>
-                              <input
-                                type="text"
-                                id="email"
-                                className={
-                                  errors.confirmPassword
-                                    ? "form-control custom-form-control form-error-border"
-                                    : "form-control custom-form-control"
-                                }
-                                name="email"
-                                value={values.email}
-                                disabled
-                                //   onChange={handleChange}
-                              />
-                            </div>
-                            <div className="mb-3 text-start">
-                              <label
-                                htmlFor="phone"
-                                className="form-label custom_lable"
-                              >
-                                Phone
-                              </label>
-                              <input
-                                type="number"
-                                id="phone"
-                                className={
-                                  errors.confirmPassword
-                                    ? "form-control custom-form-control form-error-border"
-                                    : "form-control custom-form-control"
-                                }
-                                name="phone"
-                                value={values.phone}
-                                onChange={handleChange}
-                              />
-                            </div>
-                            <div className="mb-3 text-start">
-                              <label
-                                htmlFor="bio"
-                                className="form-label custom_lable"
-                              >
-                                Bio
-                              </label>
-                              <input
-                                type="textarea"
-                                id="bio"
-                                className={
-                                  errors.bio
-                                    ? "form-control custom-form-control form-error-border"
-                                    : "form-control custom-form-control"
-                                }
-                                name="bio"
-                                value={values.bio}
-                                onChange={handleChange}
-                              />
-                            </div>
-                            <div className="mb-3 text-start">
-                              <label
-                                htmlFor="image"
-                                className="form-label custom_lable"
-                              >
-                                Edit Avatar
-                              </label>
-                              <input
-                                className="form-control"
-                                type="file"
-                                id="image"
-                                name="image"
-                                //   value={values.avatar}
-                                onChange={(e) => {
-                                  setBlob(
-                                    URL.createObjectURL(e.target.files[0])
-                                  );
-                                  setAvatarData(e.target.files[0]);
-                                  setAvatarUpdated(true);
-                                }}
-                              />
-                            </div>
-                            <button
-                              className="btn my-2 custom_button"
-                              type="submit"
+              {/* <div className="row m-0"> */}
+              <div className="col-lg-8 col-md-12 col-sm-12 row white_bg-card p-3">
+                <div className="col-sm-12 col-md-6  ">
+                  {blob !== "" ? (
+                    <img
+                      src={blob}
+                      alt=""
+                      height="350px"
+                      className="col-lg-6 col-md-12 img-fluid"
+                      style={{ width: "auto" }}
+                    />
+                  ) : (
+                    <img
+                      src={avatarData}
+                      alt=""
+                      height="350px"
+                      className="col-lg-6 col-md-12 img-fluid"
+                      style={{ width: "auto" }}
+                    />
+                  )}
+                </div>
+                <div className="col-md-6 col-12 text-start">
+                  <Formik
+                    onSubmit={(values) => submitHandler(values)}
+                    initialValues={getInitialValues()}
+                    // validationSchema={validate}
+                    enableReinitialize={true}
+                  >
+                    {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleSubmit,
+                      setFieldValue,
+                    }) => {
+                      return (
+                        <form onSubmit={handleSubmit} className="login_form">
+                          <div className="mb-3 text-start">
+                            <label
+                              htmlFor="first_name"
+                              className="form-label custom_lable"
                             >
-                              Update
-                            </button>
-                          </form>
-                        );
-                      }}
-                    </Formik>
-                  </div>
+                              First Name
+                            </label>
+                            <input
+                              type="text"
+                              id="first_name"
+                              className={
+                                errors.confirmPassword
+                                  ? "form-control custom-form-control form-error-border"
+                                  : "form-control custom-form-control"
+                              }
+                              name="first_name"
+                              value={values.first_name}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="mb-3 text-start">
+                            <label
+                              htmlFor="last_name"
+                              className="form-label custom_lable"
+                            >
+                              Last Name
+                            </label>
+                            <input
+                              type="text"
+                              id="last_name"
+                              className={
+                                errors.confirmPassword
+                                  ? "form-control custom-form-control form-error-border"
+                                  : "form-control custom-form-control"
+                              }
+                              name="last_name"
+                              value={values.last_name}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="mb-3 text-start">
+                            <label
+                              htmlFor="email"
+                              className="form-label custom_lable"
+                            >
+                              Email
+                            </label>
+                            <input
+                              type="text"
+                              id="email"
+                              className={
+                                errors.confirmPassword
+                                  ? "form-control custom-form-control form-error-border"
+                                  : "form-control custom-form-control"
+                              }
+                              name="email"
+                              value={values.email}
+                              disabled
+                              //   onChange={handleChange}
+                            />
+                          </div>
+                          <div className="mb-3 text-start">
+                            <label
+                              htmlFor="phone"
+                              className="form-label custom_lable"
+                            >
+                              Phone
+                            </label>
+                            <input
+                              type="number"
+                              id="phone"
+                              className={
+                                errors.confirmPassword
+                                  ? "form-control custom-form-control form-error-border"
+                                  : "form-control custom-form-control"
+                              }
+                              name="phone"
+                              value={values.phone}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="mb-3 text-start">
+                            <label
+                              htmlFor="bio"
+                              className="form-label custom_lable"
+                            >
+                              Bio
+                            </label>
+                            <input
+                              type="textarea"
+                              id="bio"
+                              className={
+                                errors.bio
+                                  ? "form-control custom-form-control form-error-border"
+                                  : "form-control custom-form-control"
+                              }
+                              name="bio"
+                              value={values.bio}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="mb-3 text-start">
+                            <label
+                              htmlFor="image"
+                              className="form-label custom_lable"
+                            >
+                              Edit Avatar
+                            </label>
+                            <input
+                              className="form-control"
+                              type="file"
+                              id="image"
+                              name="image"
+                              //   value={values.avatar}
+                              onChange={(e) => {
+                                setBlob(URL.createObjectURL(e.target.files[0]));
+                                setAvatarData(e.target.files[0]);
+                                setAvatarUpdated(true);
+                              }}
+                            />
+                          </div>
+                          <button
+                            className="btn my-2 custom_button"
+                            type="submit"
+                          >
+                            Update
+                          </button>
+                        </form>
+                      );
+                    }}
+                  </Formik>
                 </div>
               </div>
             </div>
+            {/* </div> */}
             {/* <div className="inventory_stats">
               <p className="text-start h4 mt-2 mb-3">Profile</p>
               <div className="row">

@@ -17,6 +17,7 @@
     "jquery": "^3.6.1",
     "react": "^18.2.0",
     "react-cropper": "^2.1.8",
+    "react-csv": "^2.2.2",
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-easy-crop": "^4.6.2",

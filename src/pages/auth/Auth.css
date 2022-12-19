@@ -9,8 +9,12 @@
 
 .login_form{
     background-color: white;
+    /* padding: 20px; */
+}
+
+.report_form{
+    background-color: white;
     padding: 20px;
-    min-width: 300px;
 }
 
 .form_buttons{
