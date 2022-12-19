@@ -22,7 +22,7 @@ export const fetchAddProduct = (data, navigate) => (dispatch, getState) => {
   postApi(`/products`, data, true)
     .then((res) => {
       dispatch(fetchAddProductSuccess(res));
-      // navigate(`/product-details/${res?.data?.data?._id}`);
+      navigate(`/product-details/${res?.data?.data?._id}`);
       toast.success(res?.data?.message);
     })
     .catch((err) => {

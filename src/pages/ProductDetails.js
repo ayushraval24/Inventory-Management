@@ -24,7 +24,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     if (productData?.image) {
-      const destination = `${process.env.REACT_APP_API_BASE_URL}/public/uploads/products/${productData.image}`;
+      const destination = `${process.env.REACT_APP_PRODUCT_IMAGES}/${productData.image}`;
       setDestination(destination);
     } else {
       setDestination(Default);
