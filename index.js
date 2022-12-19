@@ -46,7 +46,8 @@ const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bugRoutes = require("./routes/bugRoutes");
 
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/uploads/products", express.static(path.join("./uploads/products")));
+app.use("/uploads/profile", express.static(path.join("./uploads/profile")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);

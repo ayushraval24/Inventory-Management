@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const Auth = require("../helper/authValidator");
 
-const destination = path.join(__dirname, "..", "public", "uploads", "products");
+const destination = path.join(__dirname, "..", "uploads", "products");
 
 const storage = multer.diskStorage({
   destination: destination,
