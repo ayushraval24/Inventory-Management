@@ -36,7 +36,7 @@ const upload = multer({
 });
 
 router.get("/search", Auth.authRequired, ProductController.searchProducts);
-router.get("/inventory", ProductController.getInventory);
+router.get("/inventory", Auth.authRequired, ProductController.getInventory);
 router.get("/:id", Auth.authRequired, ProductController.getSingleProduct);
 router.get("/", Auth.authRequired, ProductController.getAllProducts);
 router.post(

@@ -4,9 +4,9 @@ let passport = require("passport");
 const Auth = require("../helper/authValidator");
 
 // router.post("/", Auth.authRequired, CategoryController.createCategory);
-router.get("/", CategoryController.getAllCategories);
-router.post("/", CategoryController.createCategory);
-router.put("/:id", CategoryController.updateCategory);
-router.delete("/:id", CategoryController.deleteCategory);
+router.get("/", Auth.authRequired, CategoryController.getAllCategories);
+router.post("/", Auth.authRequired, CategoryController.createCategory);
+router.put("/:id", Auth.authRequired, CategoryController.updateCategory);
+router.delete("/:id", Auth.authRequired, CategoryController.deleteCategory);
 
 module.exports = router;
