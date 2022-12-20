@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import * as types from "../../types/auth";
 import { getApi } from "../apis";
 
@@ -23,6 +24,7 @@ export const fetchUserProfile = (id) => (dispatch, getState) => {
       dispatch(fetchProfileSuccess(res));
     })
     .catch((err) => {
+      localStorage.clear();
       dispatch(fetchProfileFailed(err));
     });
 };

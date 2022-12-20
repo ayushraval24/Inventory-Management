@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  Redirec,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AddProduct from "./pages/AddProduct";
 import Dashboard from "./pages/Dashboard";
 import EditProduct from "./pages/EditProduct";
@@ -19,24 +13,30 @@ import EditProfile from "./pages/auth/EditProfile";
 import ReportBug from "./pages/ReportBug";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
-import ImageDialog from "./components/imageCrop/ImageDialog";
+import { useDispatch } from "react-redux";
+import { fetchUserProfile } from "./redux/actions/auth/getProfileAction";
 
 const PrivateRoutes = ({ children }) => {
   const hasAccessToken = localStorage.getItem("userAccessToken");
+  const dispatch = useDispatch();
+
+  if (hasAccessToken) {
+    dispatch(fetchUserProfile());
+    return (
+      <>
+        <div className="col-12 col-md-3 col-lg-2 px-0 bg-dark">
+          <Sidebar />
+        </div>
+        <div className="col-12 col-md-9 col-lg-10  main_container">
+          {children}
+        </div>
+      </>
+    );
+  }
 
   if (!hasAccessToken) {
     return <Navigate to="/login" />;
   }
-  return (
-    <>
-      <div className="col-12 col-md-3 col-lg-2 px-0 bg-dark">
-        <Sidebar />
-      </div>
-      <div className="col-12 col-md-9 col-lg-10  main_container">
-        {children}
-      </div>
-    </>
-  );
 };
 
 const PublicRoutes = ({ children }) => {};
@@ -125,6 +125,8 @@ export default function routes() {
               </PrivateRoutes>
             }
           />
+
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </div>
     </BrowserRouter>

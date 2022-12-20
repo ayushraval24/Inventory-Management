@@ -28,11 +28,11 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const allProducts = useSelector((state) => state.allProductsData.data);
-  const inventoryData = useSelector((state) => state.inventoryData.data);
-  const count = useSelector((state) => state.allProductsData.count);
-  const isLoading = useSelector((state) => state.allProductsData.isLoading);
-  const categoryCount = useSelector((state) => state.categoriesData.count);
+  const allProducts = useSelector((state) => state.allProductsData?.data);
+  const inventoryData = useSelector((state) => state.inventoryData?.data);
+  const count = useSelector((state) => state.allProductsData?.count);
+  const isLoading = useSelector((state) => state.allProductsData?.isLoading);
+  const categoryCount = useSelector((state) => state.categoriesData?.count);
 
   const headers = [
     { label: "Id", key: "id" },
