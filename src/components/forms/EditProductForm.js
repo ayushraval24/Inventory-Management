@@ -5,12 +5,13 @@ import "react-quill/dist/quill.snow.css";
 import { quillFormat, quillModules } from "../../modules/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../../redux/actions/getSingleProduct";
-import { BallTriangle, RotatingLines } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 import { fetchEditProduct } from "../../redux/actions/editProductAction";
 import { fetchAllCategories } from "../../redux/actions/category/getAllCategoryAction";
 import Select from "react-select";
 import Default from "../../assets/images/default_product.jpg";
 import { useNavigate } from "react-router-dom";
+import ImageGallery from "react-image-gallery";
 
 export default function EditProductForm({ productId }) {
   const dispatch = useDispatch();
@@ -25,8 +26,11 @@ export default function EditProductForm({ productId }) {
   const [imageData, setImageData] = useState({});
   const [editor, setEditor] = useState("");
   const [blob, setBlob] = useState("");
+  const [blobGallery, setBlobGallery] = useState([]);
   const [imageUpdated, setImageUpdated] = useState(false);
   const [catOptions, setCatOptions] = useState({});
+  const [formData, setFormData] = useState(new FormData());
+  const [defaultImg, setDefaultImg] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllCategories());
@@ -61,17 +65,27 @@ export default function EditProductForm({ productId }) {
 
   useEffect(() => {
     setEditor(productData?.description);
-    if (productData?.image == "") {
-      setImageData(Default);
+    if (productData?.image?.length === 0) {
+      setBlob(Default);
+      setDefaultImg(true);
     } else {
-      setImageData(
-        `${process.env.REACT_APP_PRODUCT_IMAGES}/${productData?.image}`
-      );
+      const finalImage = productData?.image?.map((image) => {
+        return {
+          original: `${process.env.REACT_APP_PRODUCT_IMAGES}/${image}`,
+          thumbnail: `${process.env.REACT_APP_PRODUCT_IMAGES}/${image}`,
+        };
+      });
+
+      setDefaultImg(false);
+      setImageData(finalImage);
+      // setImageData(
+      //   `${process.env.REACT_APP_PRODUCT_IMAGES}/${productData?.image}`
+      // );
     }
   }, [productData]);
 
   const submitHandler = (values) => {
-    const formData = new FormData();
+    // const formData = new FormData();
 
     if (values.name !== productData?.name) {
       formData.append("name", values.name);
@@ -88,9 +102,14 @@ export default function EditProductForm({ productId }) {
     if (editor !== productData?.description) {
       formData.append("description", editor);
     }
-    if (imageUpdated) {
-      formData.append("image", imageData);
+    if (!imageUpdated) {
+      formData.delete("image");
+      // formData.append("image", imageData);
     }
+
+    //   for (var pair of formData.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]);
+    // }
 
     dispatch(fetchEditProduct(formData, productId, navigate));
   };
@@ -143,9 +162,22 @@ export default function EditProductForm({ productId }) {
                         id="image"
                         name="image"
                         value={values.image}
+                        multiple={true}
                         onChange={(e) => {
-                          setBlob(URL.createObjectURL(e.target.files[0]));
-                          setImageData(e.target.files[0]);
+                          formData.delete("image");
+                          setBlobGallery(
+                            [...e.target.files].map((item) => {
+                              return {
+                                original: URL.createObjectURL(item),
+                                thumbnail: URL.createObjectURL(item),
+                              };
+                            })
+                          );
+                          for (let i = 0; i < e.target.files.length; i++) {
+                            formData.append("image", e.target.files[i]);
+                          }
+                          // setBlob(URL.createObjectURL(e.target.files[0]));
+                          // setImageData(e.target.files[0]);
                           setImageUpdated(true);
                         }}
                       />
@@ -237,16 +269,28 @@ export default function EditProductForm({ productId }) {
                     </button>
                   </form>
                   <div className="col-md-6">
-                    {blob !== "" ? (
+                    {defaultImg && (
                       <img src={blob} alt="" height="350px" width="450px" />
-                    ) : (
-                      <img
-                        src={imageData}
-                        alt=""
-                        height="350px"
-                        width="450px"
+                    )}
+
+                    {!defaultImg && blobGallery?.length !== 0 && (
+                      <ImageGallery
+                        items={blobGallery}
+                        showPlayButton={false}
+                        showNav={false}
+                        showFullscreenButton={false}
                       />
                     )}
+                    {!defaultImg &&
+                      blobGallery?.length == 0 &&
+                      imageData?.length > 0 && (
+                        <ImageGallery
+                          items={imageData}
+                          showPlayButton={false}
+                          showNav={false}
+                          showFullscreenButton={false}
+                        />
+                      )}
                   </div>
                 </div>
               );

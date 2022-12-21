@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddProduct } from "../../redux/actions/addProductAction";
 import { quillFormat, quillModules } from "../../modules/utils";
-import { BallTriangle, RotatingLines } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 import ImageGallery from "react-image-gallery";
 
 import { fetchAllCategories } from "../../redux/actions/category/getAllCategoryAction";
@@ -14,7 +14,7 @@ import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
 
 export default function AddProductForm() {
-  const [imageData, setImageData] = useState([]);
+  // const [imageData, setImageData] = useState([]);
   const [editor, setEditor] = useState("");
   const [blob, setBlob] = useState([]);
   const [catOptions, setCatOptions] = useState({});
@@ -50,9 +50,7 @@ export default function AddProductForm() {
     formData.append("price", values.price);
     formData.append("quantity", values.quantity);
     // formData.append("image", imageData);
-    for (const value of formData.values()) {
-      console.log(value);
-    }
+
     dispatch(fetchAddProduct(formData, navigate));
   };
 
@@ -117,6 +115,7 @@ export default function AddProductForm() {
                     value={values.image}
                     multiple={true}
                     onChange={(e) => {
+                      formData.delete("image");
                       for (let i = 0; i < e.target.files.length; i++) {
                         formData.append("image", e.target.files[i]);
                       }
