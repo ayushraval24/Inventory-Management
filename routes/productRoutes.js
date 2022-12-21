@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 });
 
 const checkFileType = function (file, cb) {
+  console.log("File : ", file);
   if (file) {
     const types = /png|jpg|jpeg|svg|JPG|JPEG|SVG|PNG/;
 
@@ -23,7 +24,7 @@ const checkFileType = function (file, cb) {
     if (extName) {
       cb(null, true);
     } else {
-      cb(next("Only supported png,jpg,jpeg and svg files"));
+      cb("Only supported png,jpg,jpeg and svg files");
     }
   }
 };
@@ -42,15 +43,27 @@ router.get("/", Auth.authRequired, ProductController.getAllProducts);
 router.post(
   "/",
   Auth.authRequired,
-  upload.single("image"),
+  upload.array("image"),
   ProductController.createProduct
 );
 router.put(
   "/:id",
   Auth.authRequired,
-  upload.single("image"),
+  upload.array("image"),
   ProductController.updateProduct
 );
+// router.post(
+//   "/",
+//   Auth.authRequired,
+//   upload.single("image"),
+//   ProductController.createProduct
+// );
+// router.put(
+//   "/:id",
+//   Auth.authRequired,
+//   upload.single("image"),
+//   ProductController.updateProduct
+// );
 router.delete("/:id", Auth.authRequired, ProductController.deleteProduct);
 
 module.exports = router;

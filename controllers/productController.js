@@ -55,7 +55,8 @@ exports.createProduct = async (req, res, next) => {
       return next(error);
     }
 
-    const imageUrl = req.file ? req.file.filename : "";
+    const imageUrls =
+      req.files.length > 0 ? req.files.map((image) => image.filename) : [];
 
     const productDetails = {
       name: req.body.name,
@@ -63,7 +64,7 @@ exports.createProduct = async (req, res, next) => {
       price: req.body.price == "" ? 0 : req.body.price,
       quantity: req.body.quantity == "" ? 0 : req.body.quantity,
       description: req.body.description,
-      image: imageUrl,
+      image: imageUrls,
     };
 
     const product = await Product.create(productDetails);
@@ -81,10 +82,10 @@ exports.updateProduct = async (req, res, next) => {
     const id = req.params.id;
 
     let finalData = {};
-    if (req.file) {
+    if (req.files) {
       finalData = {
         ...req.body,
-        image: req.file.filename,
+        image: req.files.map((image) => image.filename),
       };
     } else {
       finalData = req.body;
@@ -97,9 +98,13 @@ exports.updateProduct = async (req, res, next) => {
       finalData.price = 0;
     }
 
-    const product = await Product.findByIdAndUpdate(id, finalData).populate(
-      "category"
-    );
+    const product = await Product.findByIdAndUpdate(
+      id,
+      {
+        $set: finalData,
+      },
+      { new: true }
+    ).populate("category");
     return res.status(200).json({
       message: "Product updated successfully",
       success: product.toClient(),

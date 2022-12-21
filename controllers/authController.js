@@ -327,7 +327,13 @@ exports.updateProfile = async (req, res, next) => {
       finalData = req.body;
     }
 
-    const user = await User.findByIdAndUpdate(id, finalData);
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        $set: finalData,
+      },
+      { new: true }
+    );
 
     const {
       password,
