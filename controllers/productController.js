@@ -82,7 +82,7 @@ exports.updateProduct = async (req, res, next) => {
     const id = req.params.id;
 
     let finalData = {};
-    if (req.files) {
+    if (req.files.length > 0) {
       finalData = {
         ...req.body,
         image: req.files.map((image) => image.filename),
@@ -97,7 +97,6 @@ exports.updateProduct = async (req, res, next) => {
     if (req.body?.price == "") {
       finalData.price = 0;
     }
-
     const product = await Product.findByIdAndUpdate(
       id,
       {
