@@ -22,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-easy-crop": "^4.6.2",
     "react-icons": "^4.6.0",
+    "react-image-gallery": "^1.2.11",
     "react-loader-spinner": "^5.3.4",
     "react-quill": "^2.0.0",
     "react-redux": "^8.0.5",

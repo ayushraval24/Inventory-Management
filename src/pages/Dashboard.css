@@ -103,6 +103,15 @@
     cursor: pointer;
 }
 
+.image-gallery{
+    width: 100%;
+}
+
+.image-gallery-image{
+    max-width: 450px;
+    max-height: 350px;
+}
+
 @media only screen and (max-width: 768px){
     .inventory_cards{
         justify-content: center;

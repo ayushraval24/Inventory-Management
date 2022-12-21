@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../redux/actions/getSingleProduct";
 import { BallTriangle, RotatingLines } from "react-loader-spinner";
 import Default from "../assets/images/default_product.jpg";
+import ImageGallery from "react-image-gallery";
 
 const ProductDetails = () => {
   const { productId } = useParams();
 
   const [destination, setDestination] = useState("");
-
   const [inStock, setInStock] = useState(false);
+  const [images, setImages] = useState([]);
 
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.singleProductData.data);
@@ -24,10 +25,17 @@ const ProductDetails = () => {
 
   useEffect(() => {
     if (productData?.image) {
-      const destination = `${process.env.REACT_APP_PRODUCT_IMAGES}/${productData.image}`;
-      setDestination(destination);
+      const newImages = productData?.image?.map((item) => {
+        return {
+          original: `${process.env.REACT_APP_PRODUCT_IMAGES}/${item}`,
+          thumbnail: `${process.env.REACT_APP_PRODUCT_IMAGES}/${item}`,
+        };
+      });
+      setImages(newImages);
+      // const destination = `${process.env.REACT_APP_PRODUCT_IMAGES}/${productData.image}`;
+      // setDestination(destination);
     } else {
-      setDestination(Default);
+      // setDestination(Default);
     }
 
     if (productData?.quantity > 0) {
@@ -57,15 +65,23 @@ const ProductDetails = () => {
           <div className="col-md-6 col-12 custom_card">
             <div className="card p-3 text-start">
               <div className="d-flex justify-content-center">
-                <img
-                  src={destination}
-                  alt=""
-                  className="product_image border border-2 p-2 mb-3"
-                  style={{
-                    maxHeight: "350px",
-                    maxWidth: "450px",
-                  }}
-                />
+                {images.length > 0 ? (
+                  <ImageGallery
+                    items={images}
+                    showPlayButton={false}
+                    showNav={false}
+                  />
+                ) : (
+                  <img
+                    src={Default}
+                    alt=""
+                    className="product_image border border-2 p-2 mb-3"
+                    style={{
+                      maxHeight: "350px",
+                      maxWidth: "450px",
+                    }}
+                  />
+                )}
               </div>
               <p className="fs-4 mb-2">
                 <span className="custom_weight"> {productData?.name}</span>

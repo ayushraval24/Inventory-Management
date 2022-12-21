@@ -7,16 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAddProduct } from "../../redux/actions/addProductAction";
 import { quillFormat, quillModules } from "../../modules/utils";
 import { BallTriangle, RotatingLines } from "react-loader-spinner";
+import ImageGallery from "react-image-gallery";
 
 import { fetchAllCategories } from "../../redux/actions/category/getAllCategoryAction";
 import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
 
 export default function AddProductForm() {
-  const [imageData, setImageData] = useState({});
+  const [imageData, setImageData] = useState([]);
   const [editor, setEditor] = useState("");
-  const [blob, setBlob] = useState("");
+  const [blob, setBlob] = useState([]);
   const [catOptions, setCatOptions] = useState({});
+  const [formData, setFormData] = useState(new FormData());
 
   const dispatch = useDispatch();
 
@@ -40,15 +42,17 @@ export default function AddProductForm() {
   }, [categoriesData]);
 
   const submitHandler = (values, resetForm) => {
-    const formData = new FormData();
+    // const formData = new FormData();
 
     formData.append("name", values.name);
     formData.append("category", values.category);
     formData.append("description", editor);
     formData.append("price", values.price);
     formData.append("quantity", values.quantity);
-    formData.append("image", imageData);
-
+    // formData.append("image", imageData);
+    for (const value of formData.values()) {
+      console.log(value);
+    }
     dispatch(fetchAddProduct(formData, navigate));
   };
 
@@ -111,9 +115,24 @@ export default function AddProductForm() {
                     id="image"
                     name="image"
                     value={values.image}
+                    multiple={true}
                     onChange={(e) => {
-                      setImageData(e.target.files[0]);
-                      setBlob(URL.createObjectURL(e.target.files[0]));
+                      for (let i = 0; i < e.target.files.length; i++) {
+                        formData.append("image", e.target.files[i]);
+                      }
+                      setBlob(
+                        [...e.target.files].map((item) => {
+                          return {
+                            original: URL.createObjectURL(item),
+                            thumbnail: URL.createObjectURL(item),
+                          };
+                        })
+                      );
+                      // setBlob(
+                      //   e.target.files?.map((item) => URL.createObjectURL(item))
+                      // );
+                      // setImageData(e.target.files[0]);
+                      // setBlob(URL.createObjectURL(e.target.files[0]));
                     }}
                   />
                   {errors.image && touched.image && (
@@ -228,8 +247,14 @@ export default function AddProductForm() {
               </form>
               <div className="col-md-6">
                 {blob !== "" && (
-                  <img src={blob} alt="" height="350px" width="450px" />
+                  <ImageGallery
+                    items={blob}
+                    showPlayButton={false}
+                    showNav={false}
+                    showFullscreenButton={false}
+                  />
                 )}
+                {/* <img src={blob} alt="" height="350px" width="450px" /> */}
               </div>
             </div>
           );
