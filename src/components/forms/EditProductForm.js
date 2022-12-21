@@ -106,11 +106,6 @@ export default function EditProductForm({ productId }) {
       formData.delete("image");
       // formData.append("image", imageData);
     }
-
-    //   for (var pair of formData.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]);
-    // }
-
     dispatch(fetchEditProduct(formData, productId, navigate));
   };
 
@@ -165,6 +160,7 @@ export default function EditProductForm({ productId }) {
                         multiple={true}
                         onChange={(e) => {
                           formData.delete("image");
+                          setDefaultImg(false);
                           setBlobGallery(
                             [...e.target.files].map((item) => {
                               return {
@@ -269,6 +265,9 @@ export default function EditProductForm({ productId }) {
                     </button>
                   </form>
                   <div className="col-md-6">
+                    {console.log("defaultImg: ", defaultImg)}
+                    {console.log("blobGallery: ", blobGallery?.length)}
+                    {console.log("imageData: ", imageData?.length)}
                     {defaultImg && (
                       <img src={blob} alt="" height="350px" width="450px" />
                     )}

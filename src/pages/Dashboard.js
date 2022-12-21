@@ -223,7 +223,11 @@ export default function Dashboard() {
       <div className="inventory_items">
         <div className="row my-3">
           <div className="inventory_items col-sm-12 col-md-5 col-lg-3 text-start  main_header">
-            <CSVLink data={getProductsData()} headers={headers}>
+            <CSVLink
+              data={getProductsData()}
+              headers={headers}
+              filename={"products.csv"}
+            >
               Download CSV
             </CSVLink>
           </div>

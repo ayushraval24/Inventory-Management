@@ -15,7 +15,7 @@ export default function ReportBugForm() {
   const submitHandler = (values) => {
     postApi(`/bugs`, values)
       .then((res) => {
-        navigate("/products");
+        navigate("/");
         toast.success(res?.data?.message);
       })
       .catch((err) => {

@@ -125,8 +125,14 @@ export default function routes() {
               </PrivateRoutes>
             }
           />
-
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route
+            path="*"
+            element={
+              <PrivateRoutes>
+                <Navigate to="/" />
+              </PrivateRoutes>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>
